@@ -1,0 +1,209 @@
+close all; clc
+
+
+
+% Sum of 3 sins
+% x1=rand(1,100).*10;
+% x2=rand(1,100).*10;
+% x3=rand(1,100).*10;
+% x4=rand(1,100).*10;
+% x5=rand(1,100).*10;
+% x6=rand(1,100).*10;
+% x7=rand(1,100).*10;
+% x8=rand(1,100).*10;
+% x9=rand(1,100).*10;
+% t=randn(1,100);
+
+% a=1;
+% 
+% 
+
+ fun=@(x1,x2)'xfusmean';
+ 
+func=fun();
+
+% xmin=[0 0 0 0 0 0 -pi -pi -pi];
+% xmax=[25 20 15 0.03 0.05 0.05 pi pi pi];
+
+% data=[(100:1)', 10*rand(100,2)];
+% load('hospital'); % load data to fit
+% d1 = hospital(1:length(xbest(1)),1);
+% d2 = hospital(1:length(xbest(1)),2);
+% load('hospital') % load data to fit
+% [xbest, fit, time] = fodpso5('-cos(x1).*cos(x2).*exp(-(x1-pi).^2-(x2-pi).^2)',[0 -1],[-1 0],'min',200,1,1,0.5)
+% hold on;
+% q=1:200;
+% semilogx(q,sort(swarm, 'descend'),'b-','DisplayName','alfa=0.0');
+% 
+% [xbest00,fit00,time00,swarm00] = fodpso('-cos(x1).*cos(x2).*exp(-(x1-pi).^2-(x2-pi).^2)',[0 -1],[-1 0],'min',200,1,1,0.0);
+
+[xbest00,fit00,time00,swarm00] = fodpso(func,[15 5],[5 15],'min',200,1,1,0.0);
+
+[xbest01,fit01,time01,swarm01] = fodpso(func,[15 5],[5 15],'min',200,1,1,0.1);
+[xbest02,fit02,time02,swarm02] = fodpso(func,[15 5],[5 15],'min',200,1,1,0.2);
+[xbest03,fit03,time03, swarm03] = fodpso(func,[15 5],[5 15],'min',200,1,1,0.3);
+[xbest04,fit04,time04,swarm04] = fodpso(func,[15 5],[5 15],'min',200,1,1,0.4);
+[xbest05,fit05,time05,swarm05] = fodpso(func,[15 5],[5 15],'min',200,1,1,0.5);
+
+[xbest06,fit06,time06,swarm06] = fodpso(func,[15 5],[5 15],'min',200,1,1,0.6);
+
+[xbest07,fit07,time07,swarm07] = fodpso(func,[15 5],[5 15],'min',200,1,1,0.7);
+
+[xbest08,fit08,time08,swarm08] = fodpso(func,[15 5],[5 15],'min',200,1,1,0.8);
+
+[xbest09,fit09,time09,swarm09] = fodpso(func,[15 5],[5 15],'min',200,1,1,0.9);
+[xbest1,fit1,time1,swarm1] = fodpso(func,[15 5],[5 15],'min',200,1,1,1);
+
+q=1:200;
+
+q1=reshape(q,200,1);
+f0 = fit(q1,sort(swarm00, 'descend'),'poly2');
+r = plot(f0,'-');
+set(r,'LineWidth',2)
+direction = [60 -1 50];
+rotate(r,direction,1)
+hold on
+f1 = fit(q1,sort(swarm01, 'descend'),'poly2');
+v = plot(f1,'-');
+set(v,'LineWidth',2)
+direction = [60 -1 50];
+rotate(v,direction,1)
+hold on
+ f3 = fit(q1,sort(swarm03, 'descend'),'poly2');
+ s = plot(f3,'--');
+ set(s,'LineWidth',2)
+ direction = [60 -1 50];
+rotate(s,direction,1)
+  hold on
+  f4 = fit(q1,sort(swarm04, 'descend'),'poly2');
+w = plot(f4,'-');
+set(w,'LineWidth',2)
+direction = [60 -1 50];
+rotate(w,direction,1)
+hold on
+ f5 = fit(q1,sort(swarm05, 'descend'),'poly2');
+ t = plot(f5,':');
+ set(t,'LineWidth',2)
+ direction = [60 -1 50];
+rotate(t,direction,1)
+ hold on
+f7 = fit(q1,sort(swarm07, 'descend'),'poly2');
+u = plot(f7,'-.');
+set(u,'LineWidth',2)
+direction = [60 -1 50];
+rotate(u,direction,1)
+hold on
+f8 = fit(q1,sort(swarm08, 'descend'),'poly2');
+x = plot(f8,'-');
+set(x,'LineWidth',2)
+direction = [60 -1 50];
+rotate(x,direction,1)
+hold on
+f9 = fit(q1,sort(swarm09, 'descend'),'poly2');
+y = plot(f9,'-');
+set(y,'LineWidth',2)
+direction = [60 -1 50];
+rotate(y,direction,1)
+hold on
+f10 = fit(q1,sort(swarm1, 'descend'),'poly2');
+z = plot(f10,'-');
+set(z,'LineWidth',2)
+direction = [60 -8 0.5];
+rotate(z,direction,25)
+ hold off
+ legend('hide')
+ legend('GWO+HLD','GWO-DE-CS+MSD','GWO+OLTP','GA+DWT','BSO+DWT','FBSO+HWD','GA+LGF-SML','PPO+DTCWT','NA-VF-MODPSO+HLD')
+axis([1 200 1 20])
+ xlabel('Number of Iterations');ylabel('f2');
+
+%  semilogx(q,sort(swarm00, 'descend'),'b-','DisplayName','alfa=0.0');
+% hold on
+% 
+%  
+%  semilogx(q,sort(swarm01, 'descend'),'b*-','DisplayName','alfa=0.1');
+%  hold on
+%  semilogx(q,sort(swarm02, 'descend'),'c*-','DisplayName','alfa=0.2');
+% hold on
+%  semilogx(q,sort(swarm03, 'descend'),'r-','DisplayName','alfa=0.3');
+% hold on
+%  semilogx(q,sort(swarm04, 'descend'),'r*-','DisplayName','alfa=0.4');
+% hold on
+%  semilogx(q,sort(swarm05, 'descend'),'k-','DisplayName','alfa=0.5');
+% hold on
+%  semilogx(q,sort(swarm06, 'descend'),'k*-','DisplayName','alfa=0.6');
+% hold on
+%  semilogx(q,sort(swarm07, 'descend'),'g-','DisplayName','alfa=0.7');
+% hold on
+%  semilogx(q,sort(swarm08, 'descend'),'g*-','DisplayName','alfa=0.8');
+% hold on
+%  semilogx(q,sort(swarm09, 'descend'),'m-','DisplayName','alfa=0.9');
+% hold on
+% semilogx(q,sort(swarm1, 'descend'),'m*-','DisplayName','alfa=1.0');
+%  hold off
+%  legend
+%   xlabel('t');ylabel('Rastrigin');
+
+% legend('First=0.1','Second=0.2','Third=0.3','Fourth=0.4','Five=0.5','Six=0.6','Seventh=0.7','Eight=0.8','Ninth=9','Ten=10','Eleventh=11')
+% legend([s1; s2; s3; s4; s5; s6; s7; s8; s9; s10; s11],{'alfa=0.0';'alfa=0.0';'alfa=0.1';'alfa=0.1';'alfa=0.2';'alfa=0.2';'alfa=0.3';'alfa=0.3';'alfa=0.4';'alfa=0.4';'alfa=0.5';'alfa=0.5';'alfa=0.6';'alfa=0.6';'alfa=0.7';'alfa=0.7';'alfa=0.8';'alfa=0.8';'alfa=0.9';'alfa=0.9';'alfa=1.0';'alfa=1.0'})
+% legend([s1; s2; s3; s4; s5; s6; s7; s8; s9; s10; s11],{'alfa=0';'alfa=0.1';'alfa=0.2';'alfa=0.3';'alfa=0.4';'alfa=0.5';'alfa=0.6';'alfa=0.7';'alfa=0.8';'alfa=0.9';'alfa=1'})
+
+% gtext('alfa=0','b-')
+%[xbest05,fit05,time05,swarm05] = fodpso(func,[-0.25 -1],[-0.75 0],'min',200,1,1,0.5);
+
+
+%q=1:200;
+%[sortedswarm]=sort(swarm1);
+% % sortedq=q(sortIndex)
+%figu; 
+% % semilogx(swarm)
+% % plot(q, flipud(sort(swarm)))
+% % plot(q, sort(swarm, 'descend'))
+% % plot(num2str(swarm(i,j)), 'LineWidth', 2);
+% % alfa = 0.8;
+%semilogx(q, sort(swarm1, 'descend'))
+%hold on
+%semilogx(q, sort(swarm05, 'descend'))
+% 
+%hold off
+%xlabel('Iteration');
+%ylabel('function(f)');
+%grid on;
+
+%[xbest,fit,time] = fodpso(func,[-0.25 -1],[-0.75 0],'min',200,1,1,0.5);
+%[xbest,fit,time] = fodpso(func,[-0.25 -1],[-0.75 0],'min',200,1,1,0.1);
+% hold off;
+% [xbest,fit,time] = FDPSOFitting(d1,char(func),xmin,xmax,50,500);
+% d1 = [2 3 4 5 6 7 8 8 8 8 8 8 8 8 8 8 8 8 8 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5];
+% d2 = [4 5 8 9 2 3 4 5 6 3 5 3 5 9 3 2 5 3 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6];
+
+% d1 = data(:,1);
+% d2 = data(:,2);
+% 
+% fun=@(func)func.^1;
+% d=xbest(t+1)
+% N=10;
+% plot(0:N,d,'*')
+% plot(fit)
+% plot(d,d1,'r')
+% % plot(d1, fun(d1, xbest(1),  xbest(2),  xbest(3),  xbest(4),  xbest(5),  xbest(6),  xbest(7),   xbest(8),  xbest(9),'r'));
+% hold on;
+% plot(d1,d2,'*');
+
+% q=1:200;
+% [sortedswarm]=sort(swarm);
+% sortedq=q(sortIndex)
+% figure; 
+% semilogx(swarm)
+% plot(q, flipud(sort(swarm)))
+% plot(q, sort(swarm, 'descend'))
+% plot(num2str(swarm(i,j)), 'LineWidth', 2);
+% alfa = 0.8;
+% semilogx(q, sort(swarm, 'descend'))
+% [xbestime] = fodpso4(func,[-0.25 -1],[-0.75 0],'min',200,1,1,0.5);
+
+% hold on
+% semilogx((q, sort(swarm, 'descend')), alfa = 0.1)
+
+% xlabel('Iteration');
+% ylabel('function(f)');
+% grid on;
