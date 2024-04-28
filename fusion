@@ -1,0 +1,17 @@
+subplot(2,2,1)
+image(x1)
+axis square
+title('A1')
+subplot(2,2,2)
+image(x2)
+axis square
+title('B1')
+subplot(2,2,3)
+image(xfusmean)
+axis square 
+title('Synthesized Image: mean-mean')
+subplot(2,2,4)
+image(xfusmaxmin)
+axis square
+title('Synthesized Image: max-min')
+colormap(map)
