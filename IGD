@@ -1,0 +1,22 @@
+function IGD = calculateIGD(true_pareto, solution_set)
+% Calculates Inverted Generational Distance (IGD)
+%
+%   IGD = calculateIGD(true_pareto, solution_set)
+%
+%   Inputs:
+%       true_pareto: A matrix representing the true Pareto front (n x m), where n is the number of points and m is the number of objectives.
+%       solution_set: A matrix representing the solution set (k x m), where k is the number of solutions and m is the number of objectives.
+%
+%   Outputs:
+%       IGD: The Inverted Generational Distance value.
+    
+    % Ensure that the true Pareto front and solution set are matrices
+    true_pareto = double(true_pareto);
+    solution_set = double(solution_set);
+
+    % Calculate the minimum distance of each point in the solution set to the true Pareto front
+    min_distances = min(pdist2(solution_set, true_pareto), [], 2);
+
+    % Calculate the IGD
+    IGD = sum(1./min_distances);
+end
